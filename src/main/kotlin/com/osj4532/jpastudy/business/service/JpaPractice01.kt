@@ -1,6 +1,6 @@
 package com.osj4532.jpastudy.business.service
 
-import com.osj4532.jpastudy.entity.Member
+import com.osj4532.jpastudy.entity.ExMember
 import org.springframework.stereotype.Service
 import javax.persistence.EntityManager
 import javax.persistence.EntityManagerFactory
@@ -19,7 +19,7 @@ class JpaPractice01(
             // [transaction] - start
             tx.begin()
             // [business logic] - start
-            logic(em)
+            logic01(em)
             // [transaction] - commit
             tx.commit()
         } catch (e: Exception) {
@@ -33,18 +33,18 @@ class JpaPractice01(
 //        emf.close()
     }
 
-    fun logic(em: EntityManager) {
+    fun logic01(em: EntityManager) {
         val id = "id1"
-        val member = Member(id = id, username = "osj", age = 27)
+        val member = ExMember(id = id, username = "osj", age = 27)
 
         em.persist(member)
 
         member.age = 28
 
-        val findMember = em.find(Member::class.java, id)
+        val findMember = em.find(ExMember::class.java, id)
         println("findMember=${findMember.username}, ${findMember.age}")
 
-        val members: List<Member> = em.createQuery("select m from Member m", Member::class.java).resultList
+        val members: List<ExMember> = em.createQuery("select m from ExMember m", ExMember::class.java).resultList
         println("members.size=${members.size}")
 
         em.remove(member)
