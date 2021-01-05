@@ -1,17 +1,18 @@
 package com.osj4532.jpastudy.entity
 
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.Table
+import javax.persistence.*
 
 @Entity
-@Table(name = "MEMBER")
+@Table(name = "Member")
 data class Member (
         @Id
-        @Column(name = "ID")
-        var id: String,
-        @Column(name = "NAME")
-        var username: String,
-        var age: Int
+        @GeneratedValue
+        @Column(name = "MEMBER_ID")
+        var id: Long,
+
+        var name: String,
+
+        var city: String,
+        var street: String,
+        var zipcode: String
 )
