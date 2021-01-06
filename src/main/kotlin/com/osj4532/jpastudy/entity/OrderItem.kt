@@ -10,10 +10,14 @@ data class OrderItem (
         @Column(name = "ORDER_ITEM_ID")
         val id: Long,
 
-        val orderId: Long,
-
-        val itemId: Long,
-
         var orderPrice: Int,
-        var count: Int
+        var count: Int,
+
+        @ManyToOne
+        @JoinColumn(name = "ITEM_ID")
+        var item: Item,
+
+        @ManyToOne
+        @JoinColumn(name = "ORDER_ID")
+        var order: Order
 )

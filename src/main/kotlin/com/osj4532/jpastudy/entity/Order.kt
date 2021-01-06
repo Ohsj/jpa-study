@@ -1,22 +1,37 @@
 package com.osj4532.jpastudy.entity
 
-import com.osj4532.jpastudy.enum.OrderStatus
 import java.util.*
 import javax.persistence.*
 
 @Entity
 @Table(name = "Orders")
-data class Order (
+class Order {
         @Id
         @GeneratedValue
         @Column(name = "ORDER_ID")
-        val id: Long,
-
-        val memberId: Long,
+        val id: Long = 0
 
         @Temporal(TemporalType.TIMESTAMP)
-        var orderDate: Date,
+        var orderDate: Date = Date()
 
         @Enumerated(EnumType.STRING)
-        var status: OrderStatus
-)
+        var status: OrderStatus = OrderStatus.ORDER
+
+        @ManyToOne
+        @JoinColumn(name = "MEMBER_ID")
+        var member: Member? = null
+                set(member) {
+                        if (this.member != null) {
+                                this.member!!.orders.remove(this)
+                        }
+                        field = member
+                        member!!.orders.add(this)
+                }
+
+        @OneToMany(mappedBy = "order")
+        var orderItems: List<OrderItem> = listOf()
+}
+
+enum class OrderStatus {
+        ORDER, CANCLE
+}

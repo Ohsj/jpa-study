@@ -1,6 +1,5 @@
 package com.osj4532.jpastudy.entity
 
-import com.osj4532.jpastudy.enum.RoleType
 import java.util.*
 import javax.persistence.*
 
@@ -33,3 +32,7 @@ data class ExMember (
         @Lob
         var description: String? = null
 )
+
+enum class RoleType {
+        ADMIN, USER
+}

@@ -14,5 +14,8 @@ data class Member (
 
         var city: String,
         var street: String,
-        var zipcode: String
+        var zipcode: String,
+
+        @OneToMany(mappedBy = "member")
+        var orders: MutableList<Order> = mutableListOf()
 )
