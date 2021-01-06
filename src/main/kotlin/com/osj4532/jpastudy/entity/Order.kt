@@ -30,6 +30,14 @@ class Order {
 
         @OneToMany(mappedBy = "order")
         var orderItems: List<OrderItem> = listOf()
+
+        @OneToOne
+        @JoinColumn(name = "DELIVERY_ID")
+        var delivery: Delivery? = null
+                set(delivery) {
+                        field = delivery
+                        delivery?.order = this
+                }
 }
 
 enum class OrderStatus {

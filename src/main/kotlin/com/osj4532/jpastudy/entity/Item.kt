@@ -12,5 +12,8 @@ data class Item (
 
         var name: String,
         var price: Int,
-        var stockQuantity: Int
+        var stockQuantity: Int,
+
+        @ManyToMany(mappedBy = "items")
+        var categories: MutableList<Category> = mutableListOf()
 )
