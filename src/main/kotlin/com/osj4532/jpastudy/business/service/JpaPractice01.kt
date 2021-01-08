@@ -1,6 +1,7 @@
 package com.osj4532.jpastudy.business.service
 
-import com.osj4532.jpastudy.entity.ExMember
+import com.osj4532.jpastudy.entity.BaseEntity
+import com.osj4532.jpastudy.entity.practice.ExMember
 import org.springframework.stereotype.Service
 import javax.persistence.EntityManager
 import javax.persistence.EntityManagerFactory

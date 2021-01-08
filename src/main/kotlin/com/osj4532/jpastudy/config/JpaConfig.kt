@@ -63,7 +63,7 @@ class JpaConfig (
                 "hibernate.format_sql" to true,
                 "hibernate.id.new_generator_mappings" to true,
                 "hibernate.physical_naming_strategy" to "org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy",
-                "hibernate.hbm2ddl.auto" to "none"
+                "hibernate.hbm2ddl.auto" to "create"
         )
     }
 }

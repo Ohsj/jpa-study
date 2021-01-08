@@ -26,4 +26,4 @@ data class Category (
 
         @OneToMany(mappedBy = "parent")
         var child: MutableList<Category> = mutableListOf()
-)
+) : BaseEntity()

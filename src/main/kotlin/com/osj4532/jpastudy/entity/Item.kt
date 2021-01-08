@@ -3,17 +3,18 @@ package com.osj4532.jpastudy.entity
 import javax.persistence.*
 
 @Entity
-@Table(name = "ITEM")
-data class Item (
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn
+abstract class Item : BaseEntity() {
         @Id
         @GeneratedValue
         @Column(name = "ITEM_ID")
-        val id: Long,
+        val id: Long = 0
 
-        var name: String,
-        var price: Int,
-        var stockQuantity: Int,
+        var name: String? = null
+        var price: Int = 0
+        var stockQuantity: Int = 0
 
         @ManyToMany(mappedBy = "items")
         var categories: MutableList<Category> = mutableListOf()
-)
+}

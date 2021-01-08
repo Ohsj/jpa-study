@@ -1,4 +1,4 @@
-package com.osj4532.jpastudy.entity
+package com.osj4532.jpastudy.entity.practice
 
 import java.util.*
 import javax.persistence.*

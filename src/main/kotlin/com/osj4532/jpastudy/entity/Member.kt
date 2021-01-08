@@ -18,4 +18,4 @@ data class Member (
 
         @OneToMany(mappedBy = "member")
         var orders: MutableList<Order> = mutableListOf()
-)
+) : BaseEntity()

@@ -20,4 +20,4 @@ data class OrderItem (
         @ManyToOne
         @JoinColumn(name = "ORDER_ID")
         var order: Order
-)
+) : BaseEntity()

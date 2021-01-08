@@ -5,7 +5,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "Orders")
-class Order {
+class Order : BaseEntity() {
         @Id
         @GeneratedValue
         @Column(name = "ORDER_ID")

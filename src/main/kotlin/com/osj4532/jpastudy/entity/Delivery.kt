@@ -18,7 +18,7 @@ data class Delivery (
 
         @OneToOne(mappedBy = "delivery")
         var order: Order
-)
+) : BaseEntity()
 
 enum class DeliveryStatus {
     READY, COMP
