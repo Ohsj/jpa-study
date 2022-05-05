@@ -1,7 +1,7 @@
-package me.study.jpa.repository;
+package me.study.jpa.v1.repository;
 
 import me.study.jpa.JpaStudyApplication;
-import me.study.jpa.entity.Member;
+import me.study.jpa.v1.entity.Member;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,13 +22,13 @@ public class MemberRepositoryTest {
     @Rollback(false)
     public void testMember() {
         Member member = new Member();
-        member.setUsername("memberA");
+        member.setName("memberA");
         Long savedId = memberRepository.save(member);
 
-        Member findMember = memberRepository.find(savedId);
+        Member findMember = memberRepository.findOne(savedId);
 
         assertEquals(findMember.getId(), member.getId());
-        assertEquals(findMember.getUsername(), member.getUsername());
+        assertEquals(findMember.getName(), member.getName());
         assertEquals(findMember, member);
     }
 }

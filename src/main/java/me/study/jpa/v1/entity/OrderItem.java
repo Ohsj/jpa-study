@@ -1,4 +1,4 @@
-package me.study.jpa.entity;
+package me.study.jpa.v1.entity;
 
 import lombok.Getter;
 import lombok.Setter;
