@@ -66,7 +66,8 @@ public class OrderRepository {
         
         return query.getResultList();
     }
-    
+
+    // criteria도 JPA 표준이지만 실무에서 사용하기에 너무 복잡해서 최종으로는 querydsl을 사용한다
     public List<Order> findAllByCriteria(OrderSearch orderSearch) {
 
         CriteriaBuilder cb = em.getCriteriaBuilder();

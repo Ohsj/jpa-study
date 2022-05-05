@@ -17,6 +17,9 @@ spring:
         default_schema: jpa
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
 
 logging.level:
   org.hibernate.SQL: debug
