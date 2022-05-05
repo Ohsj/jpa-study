@@ -5,7 +5,6 @@ import me.study.jpa.v1.entity.Member;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
 
@@ -19,7 +18,6 @@ public class MemberRepositoryTest {
 
     @Test
     @Transactional
-    @Rollback(false)
     public void testMember() {
         Member member = new Member();
         member.setName("memberA");

@@ -9,7 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 @Transactional
@@ -58,6 +59,9 @@ public class MemberServiceTest {
 
         // When
         List<Member> memberList = memberService.findMembers();
+        for (Member member : memberList) {
+            System.out.println(member.getName());
+        }
 
         // Then
         assertEquals(1, memberList.size());
