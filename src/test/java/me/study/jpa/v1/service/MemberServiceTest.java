@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
@@ -45,5 +46,35 @@ public class MemberServiceTest {
         assertThrows(IllegalStateException.class, () -> {
             memberService.join(member2);
         });
+    }
+
+    @Test
+    public void 전체_회원_조회() throws Exception {
+        // Given
+        Member member1 = new Member();
+        member1.setName("맴버 1");
+
+        memberService.join(member1);
+
+        // When
+        List<Member> memberList = memberService.findMembers();
+
+        // Then
+        assertEquals(1, memberList.size());
+    }
+
+    @Test
+    public void 단일_회원_조회() throws Exception {
+        // Given
+        Member member1 = new Member();
+        member1.setName("맴버 1");
+
+        memberService.join(member1);
+
+        // When
+        Member member = memberService.findOne(member1.getId());
+
+        // Then
+        assertEquals(member1, member);
     }
 }
