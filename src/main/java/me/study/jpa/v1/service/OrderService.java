@@ -2,11 +2,14 @@ package me.study.jpa.v1.service;
 
 import lombok.RequiredArgsConstructor;
 import me.study.jpa.v1.entity.*;
+import me.study.jpa.v1.model.OrderSearch;
 import me.study.jpa.v1.repository.ItemRepository;
 import me.study.jpa.v1.repository.MemberRepository;
 import me.study.jpa.v1.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -50,5 +53,9 @@ public class OrderService {
 
         // 주문 취소
         order.cancel();
+    }
+
+    public List<Order> findOrders(OrderSearch orderSearch) {
+        return orderRepository.findAllByCriteria(orderSearch);
     }
 }
