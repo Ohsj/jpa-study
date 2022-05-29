@@ -45,4 +45,11 @@ public class MemberService {
     public Member findOne(Long memberId) {
         return memberRepository.findOne(memberId);
     }
+
+    public void update(Long id, String name) {
+        Member member = memberRepository.findOne(id);
+
+        // drity check 를 사용한 데이터 수정
+        member.setName(name);
+    }
 }
