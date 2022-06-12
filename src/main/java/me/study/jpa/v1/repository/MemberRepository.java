@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import java.util.List;
 
-@Repository // 스프링 빈 등록
+//@Repository // 스프링 빈 등록
 @RequiredArgsConstructor
 public class MemberRepository {
 

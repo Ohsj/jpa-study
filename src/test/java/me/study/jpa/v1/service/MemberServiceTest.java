@@ -12,14 +12,14 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@SpringBootTest
+//@SpringBootTest
 @Transactional
 public class MemberServiceTest {
 
     @Autowired MemberService memberService;
     @Autowired MemberRepository memberRepository;
 
-    @Test
+//    @Test
     public void 회원가입() throws Exception {
         // Given
         Member member = new Member();
@@ -32,7 +32,7 @@ public class MemberServiceTest {
         assertEquals(member, memberRepository.findOne(saveId));
     }
 
-    @Test
+//    @Test
     public void 중복_회원_예외() throws Exception {
         // Given
         Member member1 = new Member();
@@ -49,7 +49,7 @@ public class MemberServiceTest {
         });
     }
 
-    @Test
+//    @Test
     public void 전체_회원_조회() throws Exception {
         // Given
         Member member1 = new Member();
@@ -67,7 +67,7 @@ public class MemberServiceTest {
         assertEquals(1, memberList.size());
     }
 
-    @Test
+//    @Test
     public void 단일_회원_조회() throws Exception {
         // Given
         Member member1 = new Member();

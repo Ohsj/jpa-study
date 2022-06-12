@@ -11,13 +11,13 @@ import javax.transaction.Transactional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-@SpringBootTest(classes = JpaStudyApplication.class)
+//@SpringBootTest(classes = JpaStudyApplication.class)
 public class MemberRepositoryTest {
 
     @Autowired private MemberRepository memberRepository;
 
-    @Test
-    @Transactional
+//    @Test
+//    @Transactional
     public void testMember() {
         Member member = new Member();
         member.setName("memberA");
