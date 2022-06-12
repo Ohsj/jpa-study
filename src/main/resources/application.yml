@@ -26,6 +26,7 @@ logging.level:
   org.hibernate.SQL: debug
   org.hibernate.type: trace
 
+# 실무에서는 false로 하는게 좋다
 decorator:
   datasource:
     p6spy:
