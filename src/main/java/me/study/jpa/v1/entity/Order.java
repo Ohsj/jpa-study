@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name = "orders")
+//@Entity
+//@Table(name = "orders")
 @Getter @Setter
 public class Order {
 

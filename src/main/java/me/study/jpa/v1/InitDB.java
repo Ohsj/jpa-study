@@ -12,7 +12,7 @@ import javax.persistence.EntityManager;
  * 조회용 샘플 테이터 입력
  */
 
-@Component
+//@Component
 @RequiredArgsConstructor
 public class InitDB {
 
