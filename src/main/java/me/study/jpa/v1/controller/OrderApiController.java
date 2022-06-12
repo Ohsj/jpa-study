@@ -14,7 +14,7 @@ import java.util.List;
 
 import static java.util.stream.Collectors.*;
 
-@RestController
+//@RestController
 @RequiredArgsConstructor
 public class OrderApiController {
 

@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+//@Controller
 @RequiredArgsConstructor
-@RequestMapping("/items")
+//@RequestMapping("/items")
 public class ItemController {
 
     private final ItemService itemService;

@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+//@Controller
 @RequiredArgsConstructor
-@RequestMapping("/order")
+//@RequestMapping("/order")
 public class OrderController {
 
     private final OrderService orderService;

@@ -26,7 +26,7 @@ import static java.util.stream.Collectors.toList;
  * 3. 그래도 안되면 DTO로 직접 조회 방법 사용
  * 4. 최후의 방법은 JPA가 제공하는 네이티브 SQL이나 스프링 JDBC Template을 사용해서 SQL을 직접 사용
  */
-@RestController
+//@RestController
 @RequiredArgsConstructor
 public class OrderSimpleApiController {
 
