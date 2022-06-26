@@ -4,12 +4,16 @@ import me.study.jpa.v2.entity.Member;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 @Transactional
@@ -69,5 +73,27 @@ public class MemberRepositoryTest {
         assertEquals(result.get(0).getUsername(), "AAA");
         assertEquals(result.get(0).getAge(), 20);
         assertEquals(result.size(), 1);
+    }
+
+    @Test
+    public void page() throws Exception {
+        // given
+        memberRepository.save(new Member("member1", 10));
+        memberRepository.save(new Member("member2", 10));
+        memberRepository.save(new Member("member3", 10));
+        memberRepository.save(new Member("member4", 10));
+        memberRepository.save(new Member("member5", 10));
+
+        // when
+        PageRequest pageRequest = PageRequest.of(0, 3, Sort.Direction.DESC, "username");
+        Page<Member> page = memberRepository.findByAge(10, pageRequest);
+
+        // then
+        List<Member> content = page.getContent();
+        assertEquals(content.size(), 3);
+        assertEquals(page.getTotalElements(), 5);
+        assertEquals(page.getNumber(), 0);
+        assertTrue(page.isFirst());
+        assertTrue(page.hasNext());
     }
 }

@@ -2,6 +2,10 @@ package me.study.jpa.v2.repository;
 
 import me.study.jpa.v2.entity.Member;
 import me.study.jpa.v2.model.MemberDto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -47,4 +51,18 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     // 컬렉션 파라미터 바인딩
     @Query("select m from Member m where m.username in :names")
     List<Member> findByNames(@Param("names") List<String> names);
+
+    // 페이징과 정렬 사용 예제
+//    Page<Member> findByUsername(String name, Pageable pageable);
+//    Slice<Member> findByUsername(String name, Pageable pageable);
+//    List<Member> findByUsername(String name, Pageable pageable);
+//    List<Member> findByUsername(String name, Sort sort);
+
+    Page<Member> findByAge(int age, Pageable pageable);
+
+    // count 쿼리는 매우 무겁기 떄문에 count 쿼리를 따로 분리할수도 있다.
+    // 카운트 쿼리 분리(이건 복잡한 sql에서 사용, 데이터는 left join, 카운트는 left join 안해도 됨)
+    @Query(value = "select m from Member m",
+            countQuery = "select count(m.username) from Member m")
+    Page<Member> findMemberAllCountBy(Pageable pageable);
 }
