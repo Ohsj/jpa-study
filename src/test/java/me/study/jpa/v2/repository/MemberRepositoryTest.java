@@ -1,6 +1,8 @@
 package me.study.jpa.v2.repository;
 
 import me.study.jpa.v2.entity.Member;
+import me.study.jpa.v2.entity.Team;
+import org.hibernate.Hibernate;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,6 +12,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceUnitUtil;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -22,6 +26,10 @@ public class MemberRepositoryTest {
 
     @Autowired
     MemberRepository memberRepository;
+    @Autowired
+    TeamRepository teamRepository;
+    @Autowired
+    EntityManager em;
 
     @Test
     public void testMember() {
@@ -112,5 +120,45 @@ public class MemberRepositoryTest {
 
         // then
         assertEquals(resultCount, 3);
+    }
+
+    // EntityGraph
+
+    @Test
+    public void findMemberLazy() throws Exception {
+//        member team은 지연로딩 관계이다. 따라서 다음과 같이 team의 데이터를 조회할 때 마다 쿼리가
+//        실행된다. (N+1 문제 발생)
+
+        // given
+        // member1 -> teamA
+        // member2 -> teamB
+        Team teamA = new Team("teamA");
+        Team teamB = new Team("teamB");
+        teamRepository.save(teamA);
+        teamRepository.save(teamB);
+        memberRepository.save(new Member("member1", 10, teamA));
+        memberRepository.save(new Member("member2", 20, teamB));
+
+        em.flush();
+        em.clear();
+
+        // when
+        List<Member> members = memberRepository.findAll();
+
+        // then
+        for (Member member : members) {
+            member.getTeam().getName();
+
+            // 지연 로딩 여부 확인
+            // Hibernate 기능으로 확인
+            Hibernate.isInitialized(member.getTeam());
+
+            // JPA 표준 방법으로 확인
+            PersistenceUnitUtil util =
+                    em.getEntityManagerFactory().getPersistenceUnitUtil();
+            util.isLoaded(member.getTeam());
+        }
+
+
     }
 }
