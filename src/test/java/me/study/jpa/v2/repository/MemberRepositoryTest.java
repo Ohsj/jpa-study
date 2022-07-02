@@ -173,4 +173,20 @@ public class MemberRepositoryTest {
 
         em.flush(); // Update Query 실행 x
     }
+
+    @Test
+    public void callCustomMethod() {
+        // given
+        Member member1 = new Member("member1");
+        Member member2 = new Member("member2");
+
+        memberRepository.save(member1);
+        memberRepository.save(member2);
+
+        // when
+        List<Member> result = memberRepository.findMemberCustom();
+
+        // then
+        assertEquals(result.size(), 2);
+    }
 }
