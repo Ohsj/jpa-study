@@ -135,6 +135,6 @@ public class MemberJpaRepositoryTest {
 
         // then
         System.out.println("findMember.createdDate = " + findMember.getCreatedDate());
-        System.out.println("findMember.updatedDate = " + findMember.getUpdatedDate());
+        System.out.println("findMember.updatedDate = " + findMember.getLastModifiedDate());
     }
 }
