@@ -1,6 +1,5 @@
 package me.study.jpa.v1.repository;
 
-import me.study.jpa.JpaStudyApplication;
 import me.study.jpa.v1.entity.Member;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
